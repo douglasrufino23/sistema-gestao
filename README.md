@@ -1,32 +1,28 @@
-# React + TypeScript + Vite
+# 🛒 Sistema de Gestão Comercial
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## 🚧 Status do Projeto: Em Desenvolvimento
+Este projeto está em fase ativa de desenvolvimento da interface e estrutura inicial.
 
-Currently, two official plugins are available:
+## 💡 Sobre o Projeto
+O objetivo é criar um sistema web simplificado e intuitivo para ajudar pequenos mercados e mercearias locais a gerenciarem suas operações diárias de forma rápida e eficiente, sem a complexidade de grandes softwares do mercado.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Funcionalidades Planejadas
+* **Autenticação Segura:** Sistema de login para controle de acesso dos usuários.
+* **Frente de Caixa (PDV):** Registro rápido de vendas e fechamento de caixa.
+* **Controle de Estoque:** Cadastro, edição e monitoramento de produtos em tempo real.
+* **Gestão de Clientes:** Cadastro e histórico básico de compras.
+* **Relatórios:** Painel visual para acompanhamento de faturamento e vendas.
 
-## React Compiler
+## 🛠️ Tecnologias Utilizadas
+* **Frontend:** React.js
+* **Ferramenta de Build:** Vite
+* **Estilização:** Tailwind CSS
+* **Linguagem:** TypeScript
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 🗺️ Próximos Passos (Roadmap)
+- [x] Configuração inicial do ambiente (Vite + TS + Tailwind)
+- [x] Desenvolvimento da Página Inicial / Dashboard
+- [ ] Finalização da tela de Login (`ContainerLogin.tsx`)
+- [ ] Criação do módulo de Estoque
+- [ ] Desenvolvimento do módulo de PDV (Frente de Caixa)
+- [ ] Integração com banco de dados / API (Backend)
