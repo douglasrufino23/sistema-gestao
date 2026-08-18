@@ -22,7 +22,7 @@ O objetivo é criar um sistema web simplificado e intuitivo para ajudar pequenos
 ## 🗺️ Próximos Passos (Roadmap)
 - [x] Configuração inicial do ambiente (Vite + TS + Tailwind)
 - [x] Finalização da tela de Login (`ContainerLogin.tsx`)
-- [] Desenvolvimento da Página Inicial / Dashboard
+- [ ] Desenvolvimento da Página Inicial / Dashboard
 - [ ] Criação do módulo de Estoque
 - [ ] Desenvolvimento do módulo de PDV (Frente de Caixa)
 - [ ] Integração com banco de dados / API (Backend)
