@@ -1,13 +1,20 @@
 import {User, Lock} from 'lucide-react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 export function ContainerLogin() {
+    const Navigate = useNavigate();
+
+    const ValidarUsuario = () => {
+        Navigate('/sistema/home')
+    }
+
     return (
         <section className="flex flex-col items-center w-[90%] max-w-125  py-6 sm:py-10 px-4 sm:px-8 gap-6 shadow-2xl shadow-black/50 rounded-4xl bg-white  ">
             <h1 className="text-3xl sm:text-4xl font-bold text-center">
                 Acessar o Sistema
             </h1>
-            <form className="flex flex-col w-full max-w-sm p-6 items-center gap-6">
+            <form onSubmit={ValidarUsuario} className="flex flex-col w-full max-w-sm p-6 items-center gap-6">
                 <div className="flex flex-col w-full min-w-62.5 gap-2">
                     <label htmlFor="usuario" className="">Usuário</label>
                     <div className='flex flex-col relative'>
