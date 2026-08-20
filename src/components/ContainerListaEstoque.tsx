@@ -1,7 +1,5 @@
-
-
 import { useState } from 'react'
-
+import { Trash2, Edit } from 'lucide-react'
 
 export function ContainerListaEstoque() {
     const [lista, setLista] = useState([
@@ -39,7 +37,7 @@ export function ContainerListaEstoque() {
 ])
 
     return (
-        <table className='md:w-full p-4 '>
+        <table className='md:w-full'>
             <thead className=''>
                 <tr className=''>
                     
@@ -57,6 +55,8 @@ export function ContainerListaEstoque() {
                         <td className='w-[50%]'>{produto.nome}</td>
                         <td className='w-[10%] text-center'>{produto.qtd}</td>
                         <td className='w-[10%] text-center'>{produto.preco}</td>
+                        <td className='cursor-pointer'><Edit className='text-blue-600'/></td>
+                        <td className='p-2 cursor-pointer'><Trash2 className='text-red-800'/></td>
                     </tr>
                 ))}
 
