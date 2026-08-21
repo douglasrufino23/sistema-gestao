@@ -1,40 +1,15 @@
-import { useState } from 'react'
 import { Trash2, Edit } from 'lucide-react'
+import type { Produto } from '../hooks/useFetchEstoque'
 
-export function ContainerListaEstoque() {
-    const [lista, setLista] = useState([
-        {
-        cod: '115151',
-        nome: 'Leite',
-        qtd: '3',
-        preco: '3,29'
-    },
-    {
-        cod: '7897854525649',
-        nome: 'Arroz',
-        qtd: '12',
-        preco: '23,29'
-    },
-    {
-        cod: '7965656566554',
-        nome: 'Macarrão',
-        qtd: '5',
-        preco: '5,29'
-    },
-    {
-        cod: '162226262611611',
-        nome: 'Roller 2L',
-        qtd: '86',
-        preco: '9,29'
-    },
-    {
-        cod: '78895552662161261',
-        nome: 'Coca Cola 2L',
-        qtd: '10',
-        preco: '14,29'
+interface Props {
+    rows: Produto[];
+}
+
+export function ContainerListaEstoque({ rows }: Props) {
+
+    const excluirItem = (cod: number) => {
+        console.log('Excluir item:', cod)
     }
-
-])
 
     return (
         <table className='md:w-full'>
@@ -45,18 +20,20 @@ export function ContainerListaEstoque() {
                     <th className='w-[50%] text-start'>Produto</th>
                     <th className='w-[10%]'>Qntd</th>
                     <th className='w-[10%]'>Preço</th>
+                    <th className='w-[5%]'></th>
+                    <th className='w-[5%]'></th>
                     
                 </tr>
             </thead>
             <tbody>
-                {lista.map((produto) => (
+                {rows.map((produto: Produto) => (
                     <tr key={produto.cod} className='hover:bg-gray-200'>
                         <td className='w-[30%]'>{produto.cod}</td>
-                        <td className='w-[50%]'>{produto.nome}</td>
-                        <td className='w-[10%] text-center'>{produto.qtd}</td>
+                        <td className='w-[50%]'>{produto.produto}</td>
+                        <td className='w-[10%] text-center'>{produto.quantidade}</td>
                         <td className='w-[10%] text-center'>{produto.preco}</td>
                         <td className='cursor-pointer'><Edit className='text-blue-600'/></td>
-                        <td className='p-2 cursor-pointer'><Trash2 className='text-red-800'/></td>
+                        <td className='p-2 cursor-pointer'><Trash2 onClick={() => excluirItem(produto.cod)} className='text-red-800'/></td>
                     </tr>
                 ))}
 

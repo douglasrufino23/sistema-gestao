@@ -42,25 +42,76 @@ db.serialize(() => {
         })
 })
 
-app.post('/estoque', (req, res) => {
+app.post('/estoque/adicionar', (req, res) => {
     const { cod, produto, quantidade, preco } = req.body;
     const sql = 'INSERT INTO produtos (cod, produto, quantidade, preco) VALUES( ?, ?, ?, ?)'
 
     db.run(sql, [cod, produto, quantidade, preco], (err) => {
         if (err) {
             if (err.message.includes('UNIQUE')) {
-                return res.status(409).json({ err: 'Produto já existe.' })
+                
+                const updateSql = 'UPDATE produtos SET quantidade = quantidade + ? WHERE cod= ?';
+                
+                
+                
+                db.run(updateSql, [quantidade, cod], (updateErr) => {
+                    if (updateErr) {
+                        return res.status(500).json({erro: 'Erro ao atualizar'})
+                    }
+                    return res.status(200).json({sucess: 'Adicionado com sucessor'})
+                })
+                
+                const selectSql = 'SELECT * FROM produtos WHERE cod = ?'
+                db.all(selectSql, [cod], (err, rows) => {
+                    if (err) {
+                        return res.status(500).json({error: 'Erro ao pegar dados de produto existente.'})
+                    }
+                    return res.json(rows);
+    
+                })
             }
             else {
-                return res.status(500).json({ err: 'Erro ao cadastrar produto.' })
+                return res.status(500).json({ error: 'Erro ao cadastrar produto.' })
             }
 
+        }
+        else {
             return res.status(201).json({ sucess: 'Produto adicionado com sucesso!' })
-
-
         }
     })
 
+
+})
+
+app.get('/estoque/buscar', (req, res) => {
+    const buscar = req.query.busca;
+    let sql = 'SELECT * FROM produtos';
+    const params = [];
+
+    if (buscar) {
+        sql += ' WHERE CAST(cod AS TEXT) LIKE ? OR produto LIKE ?';
+        params.push(`%${buscar}%`, `%${buscar}%`);
+        
+    }
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            return res.status(500).json({error: 'Erro ao buscar banco.'})
+        }
+        return res.status(200).json(rows);
+    })
+})
+
+app.delete(`/estoque/deletar:cod`, (req, res) => {
+    const { cod } = req.body;
+    const sql = 'DELETE FROM produtos WHERE cod = ?';
+
+    db.run(sql, [ cod ], (err) => {
+        if (err) {
+            return res.status(500).json({error: 'Erro ao deletar item.'});
+        }
+
+        return res.status(201).json({sucess: 'Item deletado com sucesso!'})
+    })
 })
 
 
